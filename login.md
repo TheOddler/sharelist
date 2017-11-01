@@ -12,7 +12,7 @@ You are already logged in.
 [Click here to continue](/).
 
 Or sign out: 
-[Sign out](#){:onclick="firebase.auth().signOut()"}
+[Sign out](javascript:firebase.auth().signOut(); void(0);)
 
 </div>
 
