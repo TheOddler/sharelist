@@ -10,3 +10,38 @@
 	firebase.initializeApp(config);
 	var db = firebase.firestore();
 </script>
+<script type="text/javascript">
+	function updateUserStatus(user) {
+		if (user) {
+			// User is signed in.
+			$('.user-logged-in').show()
+			$('.user-logged-out').hide()
+
+			$('.user-sign-in-status').text('Signed in')
+			$('.user-name').text(user.displayName)
+			$('.user-email').text(user.email)
+			$('.user-photo').attr("src", user.photoURL)
+			$('.user-phone-number').text(user.phoneNumber)
+		} else {
+			// User is signed out.
+			$('.user-logged-in').hide()
+			$('.user-logged-out').show()
+
+			$('.user-sign-in-status').text('Signed out')
+			$('.user-name').text(null)
+			$('.user-email').text(null)
+			$('.user-photo').attr('src', 'http://lorempixel.com/200/200')
+			$('.user-phone-number').text(null)
+		}
+	}
+
+	window.addEventListener('load', function () {
+		firebase.auth().onAuthStateChanged(
+			updateUserStatus,
+			function (error) {
+				updateUserStatus(null)
+				console.log(error)
+			}
+		);
+	});
+</script>
