@@ -1,4 +1,5 @@
 ---
-
+title: ShareList
 ---
-<div id="firebaseui-auth-container"></div>
+
+# Welcome to ShareList!

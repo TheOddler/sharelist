@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>{{ page.title }}</title>
+
+	<link type="text/css" rel="stylesheet" href="/css/styles.css" />
+
+	{% include firebase_init.html %}
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript">
+		window.addEventListener('load', function () {
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (user) {
+					// User is signed in.
+					$('.user-sign-in-status').text('Signed in')
+					$('.user-name').text(user.displayName)
+					$('.user-email').text(user.email)
+					$('.user-photo').attr("src", user.photoURL)
+					$('.user-phone-number').text(user.phoneNumber)
+				} else {
+					// User is signed out.
+					$('.user-sign-in-status').text('Signed out')
+					$('.user-name').text(null)
+					$('.user-email').text(null)
+					$('.user-photo').attr('src', 'http://lorempixel.com/200/200')
+					$('.user-phone-number').text(null)
+				}
+			}, function (error) {
+				console.log(error);
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<table class='user-info'>
+		<tr>
+			<td>
+				<img class='user-photo'>
+			</td>
+			<td>
+				<div class='user-sign-in-status'></div>
+				<div class='user-name'></div>
+				<div class='user-email'></div>
+				<div class='user-phone-number'></div>
+			</td>
+		</tr>
+	</table>
+
+	{{ content }}
+</body>
+
+</html>
