@@ -1,18 +1,19 @@
 <html>
 	<head>
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>ShareList</title>
+
 		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
 		<script>
 			// Initialize Firebase
 			var config = {
 				apiKey: "AIzaSyAylSVJHIw49o8297moNhjaNnvcpK9ub94",
 				authDomain: "shared-wishlist.firebaseapp.com",
-				databaseURL: "https://shared-wishlist.firebaseio.com",
-				projectId: "shared-wishlist"//,
-				//storageBucket: "shared-wishlist.appspot.com",
-				//messagingSenderId: "671581161369"
+				projectId: "shared-wishlist"
 			};
 			firebase.initializeApp(config);
+			var db = firebase.firestore();
 		</script>
 	</head>
 	 
