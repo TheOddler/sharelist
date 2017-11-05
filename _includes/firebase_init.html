@@ -9,8 +9,7 @@
 	};
 	firebase.initializeApp(config);
 	var db = firebase.firestore();
-</script>
-<script type="text/javascript">
+	
 	function updateUserStatus(user) {
 		if (user) {
 			// User is signed in.
@@ -35,7 +34,7 @@
 		}
 	}
 
-	window.addEventListener('load', function () {
+	$(function () {
 		firebase.auth().onAuthStateChanged(
 			updateUserStatus,
 			function (error) {

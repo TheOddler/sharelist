@@ -7,15 +7,25 @@ includes:
 ---
 
 <table class='user-info'>
-	<tr>
+	<tr class='user-logged-in'>
 		<td>
 			<img class='user-photo'>
 		</td>
 		<td>
 			<div class='user-sign-in-status'></div>
+			<a href='javascript:firebase.auth().signOut(); void(0);'>Sign out</a>
 			<div class='user-name'></div>
 			<div class='user-email'></div>
 			<div class='user-phone-number'></div>
+		</td>
+	</tr>
+	<tr class='user-logged-out'>
+		<td>
+			<img class='user-photo'>
+		</td>
+		<td>
+			<div class='user-sign-in-status'></div>
+			<div><a href='/login'>Click here to log in</a></div>
 		</td>
 	</tr>
 </table>
