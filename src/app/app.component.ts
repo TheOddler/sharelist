@@ -4,17 +4,33 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+interface List {
+	title: string;
+	desc: string;
+}
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	title = 'Sharelist';
+	title: string;
+	desc: string;
 
-	constructor(private afs: AngularFirestore) {}
+	listsCol: AngularFirestoreCollection<List>;
+	lists: Observable<List[]>;
+
+	constructor(private afs: AngularFirestore) {
+
+	}
 
 	ngOnInit() {
+		this.listsCol = this.afs.collection('lists');
+		this.lists = this.listsCol.valueChanges();
+	}
 
+	addList() {
+		this.afs.collection('lists').add({'title': this.title, 'desc': this.desc});
 	}
 }
