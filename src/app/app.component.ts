@@ -49,6 +49,10 @@ export class AppComponent {
 		this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
 	}
 
+	deleteList(listId) {
+		this.afs.doc('lists/' + listId).delete();
+	}
+
 	getList(listId) {
 		this.listDoc = this.afs.doc('lists/' + listId);
 		this.list = this.listDoc.valueChanges();

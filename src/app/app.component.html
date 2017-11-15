@@ -11,6 +11,7 @@
 	<ul *ngFor="let list of listsMeta | async">
 		<li (click)="getList(list.id)">
 			<strong>{{ list.data.title}}</strong>
+			<strong>{{ list.data.title}}</strong> (<a href="#" (click)="deleteList(list.id)">delete</a>)
 			<br> {{list.data.desc}}
 		</li>
 	</ul>
