@@ -9,6 +9,10 @@ interface List {
 	desc: string;
 }
 
+interface ListId extends List {
+	id: string;
+}
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -19,7 +23,10 @@ export class AppComponent {
 	desc: string;
 
 	listsCol: AngularFirestoreCollection<List>;
-	lists: Observable<List[]>;
+	lists: any;
+
+	listDoc: AngularFirestoreDocument<List>;
+	list: Observable<List>;
 
 	constructor(private afs: AngularFirestore) {
 
@@ -27,10 +34,22 @@ export class AppComponent {
 
 	ngOnInit() {
 		this.listsCol = this.afs.collection('lists');
-		this.lists = this.listsCol.valueChanges();
+		this.lists = this.listsCol.snapshotChanges()
+			.map(actions => {
+				return actions.map(a => {
+					const data = a.payload.doc.data() as List;
+					const id = a.payload.doc.id;
+					return { id, data };
+				});
+			});
 	}
 
 	addList() {
-		this.afs.collection('lists').add({'title': this.title, 'desc': this.desc});
+		this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
+	}
+
+	getList(listId) {
+		this.listDoc = this.afs.doc('lists/' + listId);
+		this.list = this.listDoc.valueChanges();
 	}
 }
