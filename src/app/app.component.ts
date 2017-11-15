@@ -9,8 +9,9 @@ interface List {
 	desc: string;
 }
 
-interface ListId extends List {
+interface ListMeta {
 	id: string;
+	data: List;
 }
 
 @Component({
@@ -23,7 +24,7 @@ export class AppComponent {
 	desc: string;
 
 	listsCol: AngularFirestoreCollection<List>;
-	lists: any;
+	listsMeta: Observable<ListMeta[]>;
 
 	listDoc: AngularFirestoreDocument<List>;
 	list: Observable<List>;
@@ -34,7 +35,7 @@ export class AppComponent {
 
 	ngOnInit() {
 		this.listsCol = this.afs.collection('lists');
-		this.lists = this.listsCol.snapshotChanges()
+		this.listsMeta = this.listsCol.snapshotChanges()
 			.map(actions => {
 				return actions.map(a => {
 					const data = a.payload.doc.data() as List;

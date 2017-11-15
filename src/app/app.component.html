@@ -8,7 +8,7 @@
 	<textarea [(ngModel)]="desc" name="desc" placeholder="Description.."></textarea>
 	<input type="submit" value="Add a List" (click)="addList()">
 
-	<ul *ngFor="let list of lists | async">
+	<ul *ngFor="let list of listsMeta | async">
 		<li (click)="getList(list.id)">
 			<strong>{{ list.data.title}}</strong>
 			<br> {{list.data.desc}}
