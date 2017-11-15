@@ -1,2 +1,4 @@
 firebase-debug.log
-_site
+_site/
+.sass-cache/
+.jekyll-metadata
