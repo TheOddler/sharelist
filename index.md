@@ -28,12 +28,6 @@ title: ShareList
 	function onUserChanged(user) {
 		if (listsListener) listsListener() //unsubscribes
 
-		/*getUserData(user).then(function(data) {
-			console.log(data)
-		}).catch(function(error) {
-			console.error('Error getting user: ', error)
-		})*/
-
 		if (user) { //login
 			listsListener = db.collection('lists')
 			.where('access.' + user.uid, '==', true)
@@ -64,6 +58,3 @@ title: ShareList
 		);
 	});
 </script>
-
-{:.}
-
