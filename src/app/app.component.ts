@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 interface List {
 	title: string;
@@ -28,9 +30,16 @@ export class AppComponent {
 
 	listDoc: AngularFirestoreDocument<List>;
 	list: Observable<List>;
+	listTitleChanged: Subject<string> = new Subject<string>();
 
 	constructor(private afs: AngularFirestore) {
-
+		this.listTitleChanged
+			.debounceTime(1000)
+			.distinctUntilChanged() // only emit if value is different from previous value
+			.subscribe(t => {
+				console.log(t);
+				this.listDoc.update({title: t})
+			});
 	}
 
 	ngOnInit() {
@@ -56,5 +65,9 @@ export class AppComponent {
 	getList(listId) {
 		this.listDoc = this.afs.doc('lists/' + listId);
 		this.list = this.listDoc.valueChanges();
+	}
+
+	updateListTitle(t) {
+		this.listTitleChanged.next(t);
 	}
 }

@@ -10,14 +10,17 @@
 
 	<ul *ngFor="let list of listsMeta | async">
 		<li (click)="getList(list.id)">
-			<strong>{{ list.data.title}}</strong>
-			<strong>{{ list.data.title}}</strong> (<a href="#" (click)="deleteList(list.id)">delete</a>)
+			<strong>{{ list.data.title}}</strong> 
+			(<a href="#" (click)="deleteList(list.id)">delete</a>)
 			<br> {{list.data.desc}}
 		</li>
 	</ul>
 
-	<h1>A specific list:</h1>
-	
-	<h3>{{ (list | async)?.title }}</h3>
-	<p>{{ (list | async)?.desc }}</p>
+	<div *ngIf="list">
+		<h1>A specific list:</h1>
+		<h3>{{ (list | async)?.title }}</h3>
+		<p>{{ (list | async)?.desc }}</p>
+		<input [(ngModel)]="list.title" placeholder="Title...">
+		<input type="text" placeholder="Title.." [ngModel]='(list | async)?.title' (ngModelChange)="updateListTitle($event)">
+	</div>
 </div>
