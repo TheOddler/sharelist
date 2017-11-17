@@ -25,27 +25,29 @@ export class ListDetailComponent implements OnInit {
 
 	listDoc: AngularFirestoreDocument<List>;
 	list: Observable<List>;
-	listTitleChanged: Subject<string> = new Subject<string>();
+	listTitleChanged: Subject<{doc: AngularFirestoreDocument<List>, title: string}> = new Subject<{doc: AngularFirestoreDocument<List>, title: string}>();
 
 	constructor(private afs: AngularFirestore) {
 		this.listTitleChanged
 			.debounceTime(1000)
 			.distinctUntilChanged()
-			.subscribe(t => {
-				console.log(t);
-				this.listDoc.update({title: t})
+			.subscribe(info => {
+				console.log(info.title);
+				info.doc.update({title: info.title})
 			});
 	}
 
 	ngOnInit() {
 	}
 	
-	updateListTitle(t) {
-		this.listTitleChanged.next(t);
+	updateListTitle(newTitle) {
+		this.listTitleChanged.next({
+			doc: this.listDoc,
+			title: newTitle
+		});
 	}
 
 	@Input() set listMeta(newListMeta: ListMeta) {
-		console.log("setListMeta...", newListMeta)
 		if (newListMeta != null) {
 			this.listDoc = this.afs.doc('lists/' + newListMeta.id);
 			this.list = this.listDoc.valueChanges();
