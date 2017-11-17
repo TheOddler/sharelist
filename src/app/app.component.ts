@@ -14,6 +14,7 @@ import { List, ListMeta } from './list-detail/list-detail.component';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+	
 	title: string;
 	desc: string;
 
@@ -43,13 +44,8 @@ export class AppComponent {
 
 	deleteList(deleteListMeta) {
 		this.afs.doc('lists/' + deleteListMeta.id).delete();
-		console.log("deleteList", deleteListMeta);
 		if (deleteListMeta == this.selectedListMeta) {
 			this.selectedListMeta = null;
-			console.log("same", this.selectedListMeta);
-		}
-		else {
-			console.log("diff", deleteListMeta, this.selectedListMeta);
 		}
 	}
 }
