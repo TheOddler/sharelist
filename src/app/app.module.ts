@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 // Firebase and Firestore
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { ListComponent } from './list/list.component';
+import { ListDetailComponent } from './list-detail/list-detail.component';
 
 var firebaseConfig = {
 	apiKey: "AIzaSyAylSVJHIw49o8297moNhjaNnvcpK9ub94",
@@ -22,7 +22,7 @@ var firebaseConfig = {
 @NgModule({
 	declarations: [
 		AppComponent,
-		ListComponent
+		ListDetailComponent
 	],
 	imports: [
 		BrowserModule,

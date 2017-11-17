@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { List, ListMeta } from './list/list.component';
+import { List, ListMeta } from './list-detail/list-detail.component';
 
 @Component({
 	selector: 'app-root',

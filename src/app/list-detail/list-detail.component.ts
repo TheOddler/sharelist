@@ -17,11 +17,11 @@ export interface ListMeta {
 }
 
 @Component({
-	selector: 'app-list',
-	templateUrl: './list.component.html',
-	styleUrls: ['./list.component.css']
+	selector: 'app-list-detail',
+	templateUrl: './list-detail.component.html',
+	styleUrls: ['./list-detail.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListDetailComponent implements OnInit {
 
 	listDoc: AngularFirestoreDocument<List>;
 	list: Observable<List>;
