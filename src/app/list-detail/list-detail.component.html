@@ -1,20 +1,22 @@
 <div class="container" *ngIf="list">
-	<div>
-		<input 
-			class="title"
-			placeholder="Title"
-			[ngModel]='(list | async)?.title'
-			(ngModelChange)="updateListTitle($event)"
-			type="text">
-	</div>
+	<div class='heading'>
+		<div>
+			<input 
+				class="title"
+				placeholder="Title"
+				[ngModel]='(list | async)?.title'
+				(ngModelChange)="updateListTitle($event)"
+				type="text">
+		</div>
 
-	<div>
-		<input
-			class="description"
-			placeholder="Description"
-			[ngModel]='(list | async)?.desc'
-			(ngModelChange)="updateListDesc($event)"
-			type="text">
+		<div>
+			<input
+				class="description"
+				placeholder="Description"
+				[ngModel]='(list | async)?.desc'
+				(ngModelChange)="updateListDesc($event)"
+				type="text">
+		</div>
 	</div>
 
 	<div>
