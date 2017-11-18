@@ -20,10 +20,10 @@
 	</div>
 
 	<div>
-		<div class="items">
+		<ul class="items">
 			<app-item-detail
 			*ngFor="let itemM of itemsMeta | async"
 			[itemMeta]="itemM"></app-item-detail>
-		</div>
+		</ul>
 	</div>
 </div>
