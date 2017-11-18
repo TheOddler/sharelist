@@ -4,8 +4,7 @@
 	</h1>
 
 	<div *ngIf="afAuth.authState | async; let user; else showLogin">
-		<h1>Hello {{ user.displayName }}!</h1>
-		<button (click)="logout()">Logout</button>
+		<p>Hello {{ user.displayName }}! <button (click)="logout()">Logout</button></p>
 
 		<div class="lists">
 			<div
