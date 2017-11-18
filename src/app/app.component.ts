@@ -35,11 +35,13 @@ export class AppComponent implements OnInit {
 		this.listsCol = this.afs.collection<List>('lists', ref => ref.orderBy('title'));
 		this.listsMeta = this.listsCol.snapshotChanges()
 			.map(actions => {
-				const first = actions.find(a => a.type === 'added');
-				this.selectedListMeta = {
-					id: first.payload.doc.id,
-					data: first.payload.doc.data() as List
-				};
+				if (!this.selectedListMeta) {
+					const first = actions.find(a => a.type === 'added');
+					this.selectedListMeta = {
+						id: first.payload.doc.id,
+						data: first.payload.doc.data() as List
+					};
+				}
 				return actions.map(a => {
 					const data = a.payload.doc.data() as List;
 					const id = a.payload.doc.id;
