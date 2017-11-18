@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -13,8 +13,8 @@ import { List, ListMeta } from './list-detail/list-detail.component';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-	
+export class AppComponent implements OnInit {
+
 	title: string;
 	desc: string;
 
@@ -44,7 +44,7 @@ export class AppComponent {
 
 	deleteList(deleteListMeta) {
 		this.afs.doc('lists/' + deleteListMeta.id).delete();
-		if (deleteListMeta == this.selectedListMeta) {
+		if (deleteListMeta === this.selectedListMeta) {
 			this.selectedListMeta = null;
 		}
 	}
