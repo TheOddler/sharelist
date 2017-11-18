@@ -36,6 +36,7 @@ h1 {
     color: #fff;
     padding: 20px;
     float: left;
+    width: calc(85% - 40px);
 }
 .lists input[type='submit'] {
     border-left: 1px solid #ffcc00;
