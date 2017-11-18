@@ -28,6 +28,7 @@ export class ListDetailComponent implements OnInit {
 	listDoc: AngularFirestoreDocument<List>;
 	list: Observable<List>;
 	listTitleChanged = new Subject<{doc: AngularFirestoreDocument<List>, title: string}>();
+	listDescChanged = new Subject<{doc: AngularFirestoreDocument<List>, desc: string}>();
 
 	itemsCol: AngularFirestoreCollection<Item>;
 	itemsMeta: Observable<ItemMeta[]>;
@@ -36,19 +37,28 @@ export class ListDetailComponent implements OnInit {
 		this.listTitleChanged
 			.debounceTime(1000)
 			.distinctUntilChanged()
-			.subscribe(info => {
-				console.log(info.title);
-				info.doc.update({title: info.title})
-			});
+			.subscribe(info => info.doc.update({title: info.title}));
+
+		this.listDescChanged
+			.debounceTime(1000)
+			.distinctUntilChanged()
+			.subscribe(info => info.doc.update({desc: info.desc}));
 	}
 
 	ngOnInit() {
 	}
-	
+
 	updateListTitle(newTitle) {
 		this.listTitleChanged.next({
 			doc: this.listDoc,
 			title: newTitle
+		});
+	}
+
+	updateListDesc(newDesc) {
+		this.listDescChanged.next({
+			doc: this.listDoc,
+			desc: newDesc
 		});
 	}
 
@@ -67,8 +77,7 @@ export class ListDetailComponent implements OnInit {
 						return { parentId, id, data };
 					});
 				});
-		}
-		else {
+		} else {
 			this.listDoc = null;
 			this.list = null;
 			this.itemsCol = null;
