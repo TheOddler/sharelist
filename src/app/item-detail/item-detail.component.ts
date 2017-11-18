@@ -31,13 +31,12 @@ export class ItemDetailComponent implements OnInit {
 
 	ngOnInit() {
 	}
-	
+
 	@Input() set itemMeta(newListMeta: ItemMeta) {
 		if (newListMeta != null) {
 			this.itemDoc = this.afs.doc('lists/' + newListMeta.parentId + '/items/' + newListMeta.id);
 			this.item = this.itemDoc.valueChanges();
-		}
-		else {
+		} else {
 			this.itemDoc = null;
 			this.item = null;
 		}
