@@ -68,7 +68,9 @@ export class AppComponent implements OnInit {
 
 	deleteList(deleteListMeta) {
 		this.afs.doc('lists/' + deleteListMeta.id).delete();
-		if (deleteListMeta === this.selectedListMeta) {
+		if (this.selectedListMeta &&
+			deleteListMeta.id === this.selectedListMeta.id
+		) {
 			this.selectedListMeta = null;
 		}
 	}
