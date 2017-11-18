@@ -15,9 +15,9 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum|
 
 ## Build
 
-Run `ng build --output-path docs --base-href sharelist` to build the project.
+Run `ng build --prod --output-path docs --base-href sharelist` to build the project.
 The build artifacts will be stored in the `docs/` directory for github pages.
-Use the `--prod` flag for a production build.
+Remove the `--prod` flag for a debug build.
 
 ## Running unit tests
 
