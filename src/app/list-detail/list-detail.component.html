@@ -1,10 +1,9 @@
-<div *ngIf="list">
-	<h1>A specific list:</h1>
-	<h3>{{ (list | async)?.title }}</h3>
-	<p>{{ (list | async)?.desc }}</p>
-	<input type="text" placeholder="Title.." [ngModel]='(list | async)?.title' (ngModelChange)="updateListTitle($event)">
+<div class="list-detail" *ngIf="list">
+	<input class="title" placeholder="Title" [ngModel]='(list | async)?.title' (ngModelChange)="updateListTitle($event)" type="text">
 
-	<ul *ngFor="let itemM of itemsMeta | async">
+	<input class="description" placeholder="Description" [ngModel]='(list | async)?.desc' (ngModelChange)="updateListDesc($event)" type="text">
+
+	<ul class="items" *ngFor="let itemM of itemsMeta | async">
 		<app-item-detail [itemMeta]="itemM"></app-item-detail>
 	</ul>
 </div>
