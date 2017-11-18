@@ -32,9 +32,15 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.listsCol = this.afs.collection('lists');
+		this.listsCol = this.afs.collection<List>('lists', ref => ref.orderBy('title'));
 		this.listsMeta = this.listsCol.snapshotChanges()
 			.map(actions => {
+				console.log('Actions: ', actions.length, actions);
+				const first = actions.find(a => a.type === 'added');
+				this.selectedListMeta = {
+					id: first.payload.doc.id,
+					data: first.payload.doc.data() as List
+				};
 				return actions.map(a => {
 					const data = a.payload.doc.data() as List;
 					const id = a.payload.doc.id;
@@ -52,9 +58,11 @@ export class AppComponent implements OnInit {
 	}
 
 	addList() {
-		this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
-		this.title = '';
-		this.desc = '';
+		if (this.title) {
+			this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
+			this.title = '';
+			this.desc = '';
+		}
 	}
 
 	deleteList(deleteListMeta) {
