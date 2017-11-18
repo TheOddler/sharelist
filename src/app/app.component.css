@@ -1,3 +1,7 @@
+h1 {
+    margin-top:50px;
+}
+
 input, textarea {
     display:block;
     width: 100%;
@@ -31,7 +35,4 @@ ul li {
 }
 ul li a {
     color:#ffcc00;
-}
-h1 {
-    margin-top:50px;
 }
