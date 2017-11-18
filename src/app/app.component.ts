@@ -19,7 +19,7 @@ import { List, ListMeta } from './list-detail/list-detail.component';
 export class AppComponent implements OnInit {
 
 	title: string;
-	desc: string;
+	desc = '';
 
 	listsCol: AngularFirestoreCollection<List>;
 	listsMeta: Observable<ListMeta[]>;
@@ -53,6 +53,8 @@ export class AppComponent implements OnInit {
 
 	addList() {
 		this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
+		this.title = '';
+		this.desc = '';
 	}
 
 	deleteList(deleteListMeta) {
