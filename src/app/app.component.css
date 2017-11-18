@@ -15,10 +15,11 @@ h1 {
 .lists .item {
     padding: 20px;
 }
-.lists div {
-    border-radius: 5px;
-    background-color: #414a59;
+.lists > div {
+    overflow: hidden;
+    border-radius: 10px;
     color: #bec8d9;
+    background-color: #414a59;
 }
 .lists div a {
     color: #ffcc00;
@@ -27,21 +28,24 @@ h1 {
     background-color: #5b7399;
 }
 
-input {
-    padding: 10px;
-    background: none;
+.lists input {
     border: 0;
-    color: #fff;
+    background: none;
 }
-input[type='text'] {
+.lists input[type='text'] {
+    color: #fff;
     padding: 20px;
     float: left;
 }
-input[type='submit'] {
-    background-color: #ffcc00;
+.lists input[type='submit'] {
+    border-left: 1px solid #ffcc00;
+    color: #ffcc00;
     cursor: pointer;
-    color: #000;
     font-weight: bold;
     float: right;
     height: 100%;
+    width: 15%;
+}
+.lists input[type='submit']:hover {
+    background: #5b7399;
 }
