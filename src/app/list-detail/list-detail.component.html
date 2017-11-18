@@ -3,4 +3,8 @@
 	<h3>{{ (list | async)?.title }}</h3>
 	<p>{{ (list | async)?.desc }}</p>
 	<input type="text" placeholder="Title.." [ngModel]='(list | async)?.title' (ngModelChange)="updateListTitle($event)">
+
+	<ul *ngFor="let itemM of itemsMeta | async">
+		<app-item-detail [itemMeta]="itemM"></app-item-detail>
+	</ul>
 </div>
