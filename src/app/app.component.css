@@ -23,6 +23,9 @@ h1 {
 .lists div a {
     color: #ffcc00;
 }
+.lists .selected {
+    background-color: #5b7399;
+}
 
 input {
     padding: 10px;

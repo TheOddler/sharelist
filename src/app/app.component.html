@@ -9,7 +9,11 @@
 		<button (click)="logout()">Logout</button>
 
 		<div class="lists">
-			<div class="item" *ngFor="let list of listsMeta | async" (click)="selectedListMeta = list">
+			<div
+				class="item"
+				[ngClass]="{'selected': selectedListMeta.id === list.id}"
+				*ngFor="let list of listsMeta | async"
+				(click)="selectedListMeta = list">
 				<strong>{{ list.data.title}}</strong>
 				(<a href="#" (click)="deleteList(list); $event.stopPropagation();">del</a>)
 			</div>
