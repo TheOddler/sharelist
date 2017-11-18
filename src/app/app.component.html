@@ -4,19 +4,29 @@
 		Welcome to Sharelist!
 	</h1>
 
-	<input type="text" [(ngModel)]="title" name="title" placeholder="Title..">
-	<textarea [(ngModel)]="desc" name="desc" placeholder="Description.."></textarea>
-	<input type="submit" value="Add a List" (click)="addList()">
-
-	<ul *ngFor="let list of listsMeta | async">
-		<li (click)="selectedListMeta = list">
-			<strong>{{ list.data.title}}</strong> 
-			(<a href="#" (click)="deleteList(list); $event.stopPropagation();">delete</a>)
-			<br> {{list.data.desc}}
-		</li>
-	</ul>
 
 
+	<div *ngIf="afAuth.authState | async; let user; else showLogin">
+		<h1>Hello {{ user.displayName }}!</h1>
+		<button (click)="logout()">Logout</button>
 
-	<app-list-detail [listMeta]="selectedListMeta"></app-list-detail>
+		<input type="text" [(ngModel)]="title" name="title" placeholder="Title..">
+		<textarea [(ngModel)]="desc" name="desc" placeholder="Description.."></textarea>
+		<input type="submit" value="Add a List" (click)="addList()">
+
+		<ul *ngFor="let list of listsMeta | async">
+			<li (click)="selectedListMeta = list">
+				<strong>{{ list.data.title}}</strong>
+				(
+				<a href="#" (click)="deleteList(list); $event.stopPropagation();">delete</a>)
+				<br> {{list.data.desc}}
+			</li>
+		</ul>
+
+		<app-list-detail [listMeta]="selectedListMeta"></app-list-detail>
+	</div>
+	<ng-template #showLogin>
+		<p>Please login.</p>
+		<button (click)="login()">Login with Google</button>
+	</ng-template>
 </div>
