@@ -5,6 +5,11 @@
 .heading input {
 	background: none;
 	border: 0;
+	width: 100%;
+}
+.heading input:focus {
+	text-decoration: underline;
+	background-color: rgba(0,0,0,0.1);
 }
 
 .title {
