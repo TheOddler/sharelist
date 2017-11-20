@@ -50,3 +50,10 @@ h1 {
 .lists input[type='submit']:hover {
     background: #5b7399;
 }
+
+.login-status {
+    margin-bottom: 20px;
+}
+.login-status button {
+    border-radius: 5px;
+}
