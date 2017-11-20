@@ -25,9 +25,14 @@ export class ItemDetailComponent implements OnInit {
 
 	itemDoc: AngularFirestoreDocument<Item>;
 	item: Observable<Item>;
-	itemTitleChanged = new Subject<{doc: AngularFirestoreDocument<Item>, title: string}>();
+	itemTitleChanged = new Subject<{doc: AngularFirestoreDocument<Item>, name: string}>();
 
-	constructor(private afs: AngularFirestore) { }
+	constructor(private afs: AngularFirestore) {
+		this.itemTitleChanged
+			.debounceTime(1000)
+			.distinctUntilChanged()
+			.subscribe(info => info.doc.update({name: info.name}));
+	}
 
 	ngOnInit() {
 	}
@@ -40,6 +45,13 @@ export class ItemDetailComponent implements OnInit {
 			this.itemDoc = null;
 			this.item = null;
 		}
+	}
+
+	updateListDesc(newName) {
+		this.itemTitleChanged.next({
+			doc: this.itemDoc,
+			name: newName
+		});
 	}
 
 }

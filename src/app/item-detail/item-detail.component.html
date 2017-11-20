@@ -1,3 +1,9 @@
 <li *ngIf="item">
-	<h3>{{ (item | async)?.name }}</h3>
+	<input
+		class="name"
+		placeholder="Description"
+		[ngModel]='(item | async)?.name'
+		(ngModelChange)="updateName($event)"
+		type="text"
+	>
 </li>
