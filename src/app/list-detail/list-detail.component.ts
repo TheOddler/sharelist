@@ -42,6 +42,7 @@ export class ListDetailComponent implements OnInit {
 			this.itemsCol = this.afs.collection('lists/' + newListMeta.id + '/items');
 			this.itemsMeta = this.itemsCol.snapshotChanges()
 				.map(actions => {
+					console.log('actions', actions);
 					return actions.map(a => {
 						const data = a.payload.doc.data() as Item;
 						const id = a.payload.doc.id;
@@ -54,5 +55,9 @@ export class ListDetailComponent implements OnInit {
 			this.itemsCol = null;
 			this.itemsMeta = null;
 		}
+	}
+
+	trackByFn(index: any, item: ItemMeta) {
+		return item.id;
 	}
 }

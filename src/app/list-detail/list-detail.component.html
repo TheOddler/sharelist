@@ -22,7 +22,7 @@
 	<div>
 		<ul class="items">
 			<app-item-detail
-				*ngFor="let itemM of itemsMeta | async"
+				*ngFor="let itemM of itemsMeta | async; trackBy: trackByFn;"
 				[itemMeta]="itemM"
 			></app-item-detail>
 			<li>
