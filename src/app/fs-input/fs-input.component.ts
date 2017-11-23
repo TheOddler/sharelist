@@ -25,7 +25,6 @@ export class FsInputComponent implements OnInit {
 	ngOnInit() { }
 
 	@Input() set document(newDoc: AngularFirestoreDocument<any>) {
-		console.log('set document', newDoc);
 		if (this._document !== newDoc) {
 			this._document = newDoc;
 			this.updateAngular();
@@ -33,7 +32,6 @@ export class FsInputComponent implements OnInit {
 	}
 
 	@Input() set field(newField: string) {
-		console.log('set field', newField);
 		if (this._field !== newField) {
 			this._field = newField;
 			this.updateAngular();
@@ -42,7 +40,6 @@ export class FsInputComponent implements OnInit {
 
 	private updateAngular() {
 		if (this._field && this._document) {
-			console.log('both set', this._field, this._document);
 			const doc = this._document;
 			const field = this._field;
 			this._docObservable = this._document.valueChanges()
@@ -62,7 +59,6 @@ export class FsInputComponent implements OnInit {
 	}
 
 	update(newValue: string) {
-		console.log('update', newValue);
 		if (this._changed) {
 			this._changed.next(newValue);
 		}
