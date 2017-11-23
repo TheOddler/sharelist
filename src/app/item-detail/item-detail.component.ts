@@ -23,35 +23,18 @@ export interface ItemMeta {
 })
 export class ItemDetailComponent implements OnInit {
 
-	itemDoc: AngularFirestoreDocument<Item>;
-	item: Observable<Item>;
-	itemTitleChanged = new Subject<{doc: AngularFirestoreDocument<Item>, name: string}>();
+	private itemDoc: AngularFirestoreDocument<Item>;
 
-	constructor(private afs: AngularFirestore) {
-		this.itemTitleChanged
-			.debounceTime(1000)
-			.distinctUntilChanged()
-			.subscribe(info => info.doc.update({name: info.name}));
-	}
+	constructor(private afs: AngularFirestore) { }
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 
 	@Input() set itemMeta(newListMeta: ItemMeta) {
 		if (newListMeta != null) {
 			this.itemDoc = this.afs.doc('lists/' + newListMeta.parentId + '/items/' + newListMeta.id);
-			this.item = this.itemDoc.valueChanges();
 		} else {
 			this.itemDoc = null;
-			this.item = null;
 		}
-	}
-
-	updateListDesc(newName) {
-		this.itemTitleChanged.next({
-			doc: this.itemDoc,
-			name: newName
-		});
 	}
 
 }

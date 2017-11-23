@@ -1,9 +1,8 @@
-<li *ngIf="item">
-	<input
+<li *ngIf="itemDoc">
+	<app-fs-input
 		class="name"
-		placeholder="Description"
-		[ngModel]='(item | async)?.name'
-		(ngModelChange)="updateName($event)"
-		type="text"
-	>
+		placeholder="Title"
+		[document]='itemDoc'
+		field="name"
+	></app-fs-input>
 </li>

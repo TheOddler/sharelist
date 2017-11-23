@@ -1,31 +1,30 @@
-<div class="container" *ngIf="list">
+<div class="container" *ngIf="listDoc">
 	<div class='heading'>
 		<div>
-			<input	
+			<app-fs-input
 				class="title"
 				placeholder="Title"
-				[ngModel]='(list | async)?.title'
-				(ngModelChange)="updateListTitle($event)"
-				type="text"
-			>
+				[document]='listDoc'
+				field="title"
+			></app-fs-input>
 		</div>
 
 		<div>
-			<input
+			<app-fs-input
 				class="description"
 				placeholder="Description"
-				[ngModel]='(list | async)?.desc'
-				(ngModelChange)="updateListDesc($event)"
-				type="text"
-			>
+				[document]='listDoc'
+				field="desc"
+			></app-fs-input>
 		</div>
 	</div>
 
 	<div>
 		<ul class="items">
 			<app-item-detail
-			*ngFor="let itemM of itemsMeta | async"
-			[itemMeta]="itemM"></app-item-detail>
+				*ngFor="let itemM of itemsMeta | async"
+				[itemMeta]="itemM"
+			></app-item-detail>
 			<li>
 				
 			</li>

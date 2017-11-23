@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { FsInputComponent } from './fs-input/fs-input.component';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAylSVJHIw49o8297moNhjaNnvcpK9ub94',
@@ -26,7 +27,8 @@ const firebaseConfig = {
 	declarations: [
 		AppComponent,
 		ListDetailComponent,
-		ItemDetailComponent
+		ItemDetailComponent,
+		FsInputComponent
 	],
 	imports: [
 		BrowserModule,

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { Item, ItemMeta } from '../item-detail/item-detail.component';
+import { FsInputComponent } from '../fs-input/fs-input.component';
 
 export interface List {
 	title: string;
@@ -25,47 +26,18 @@ export interface ListMeta {
 })
 export class ListDetailComponent implements OnInit {
 
-	listDoc: AngularFirestoreDocument<List>;
-	list: Observable<List>;
-	listTitleChanged = new Subject<{doc: AngularFirestoreDocument<List>, title: string}>();
-	listDescChanged = new Subject<{doc: AngularFirestoreDocument<List>, desc: string}>();
+	private listDoc: AngularFirestoreDocument<List>;
 
-	itemsCol: AngularFirestoreCollection<Item>;
-	itemsMeta: Observable<ItemMeta[]>;
+	private itemsCol: AngularFirestoreCollection<Item>;
+	private itemsMeta: Observable<ItemMeta[]>;
 
-	constructor(private afs: AngularFirestore) {
-		this.listTitleChanged
-			.debounceTime(1000)
-			.distinctUntilChanged()
-			.subscribe(info => info.doc.update({title: info.title}));
+	constructor(private afs: AngularFirestore) { }
 
-		this.listDescChanged
-			.debounceTime(1000)
-			.distinctUntilChanged()
-			.subscribe(info => info.doc.update({desc: info.desc}));
-	}
-
-	ngOnInit() {
-	}
-
-	updateListTitle(newTitle) {
-		this.listTitleChanged.next({
-			doc: this.listDoc,
-			title: newTitle
-		});
-	}
-
-	updateListDesc(newDesc) {
-		this.listDescChanged.next({
-			doc: this.listDoc,
-			desc: newDesc
-		});
-	}
+	ngOnInit() { }
 
 	@Input() set listMeta(newListMeta: ListMeta) {
 		if (newListMeta != null) {
 			this.listDoc = this.afs.doc('lists/' + newListMeta.id);
-			this.list = this.listDoc.valueChanges();
 
 			this.itemsCol = this.afs.collection('lists/' + newListMeta.id + '/items');
 			this.itemsMeta = this.itemsCol.snapshotChanges()
@@ -79,7 +51,6 @@ export class ListDetailComponent implements OnInit {
 				});
 		} else {
 			this.listDoc = null;
-			this.list = null;
 			this.itemsCol = null;
 			this.itemsMeta = null;
 		}

@@ -1,0 +1,6 @@
+<input
+	placeholder="{{ placeholder }}"
+	[ngModel]='(observable | async)'
+	(ngModelChange)="update($event)"
+	type="text"
+>
