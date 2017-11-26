@@ -22,11 +22,13 @@
 	<div>
 		<ul class="items">
 			<app-item-detail
+				class='item'
 				*ngFor="let itemM of itemsMeta | async; trackBy: trackByFn;"
 				[itemMeta]="itemM"
 			></app-item-detail>
-			<li>
-				Add item here
+			<li class='add' *ngIf="itemsMeta | async">
+				<input type="submit" value="+" (click)="addItem()">
+				<input type="text" [(ngModel)]="newItemName" name="name" placeholder="Add an item...">
 			</li>
 		</ul>
 	</div>
