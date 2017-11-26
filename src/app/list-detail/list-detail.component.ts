@@ -40,7 +40,6 @@ export class ListDetailComponent implements OnInit {
 			const itemsCol = this.afs.collection('lists/' + newListMeta.id + '/items');
 			this.itemsMeta = itemsCol.snapshotChanges()
 				.map(actions => {
-					console.log('actions', actions);
 					return actions.map(a => {
 						const data = a.payload.doc.data() as Item;
 						const id = a.payload.doc.id;
