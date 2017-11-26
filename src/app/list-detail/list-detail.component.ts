@@ -26,10 +26,8 @@ export interface ListMeta {
 })
 export class ListDetailComponent implements OnInit {
 
-	private listDoc: AngularFirestoreDocument<List>;
-
-	private itemsCol: AngularFirestoreCollection<Item>;
-	private itemsMeta: Observable<ItemMeta[]>;
+	listDoc: AngularFirestoreDocument<List>;
+	itemsMeta: Observable<ItemMeta[]>;
 
 	constructor(private afs: AngularFirestore) { }
 
@@ -39,8 +37,8 @@ export class ListDetailComponent implements OnInit {
 		if (newListMeta != null) {
 			this.listDoc = this.afs.doc('lists/' + newListMeta.id);
 
-			this.itemsCol = this.afs.collection('lists/' + newListMeta.id + '/items');
-			this.itemsMeta = this.itemsCol.snapshotChanges()
+			const itemsCol = this.afs.collection('lists/' + newListMeta.id + '/items');
+			this.itemsMeta = itemsCol.snapshotChanges()
 				.map(actions => {
 					console.log('actions', actions);
 					return actions.map(a => {
@@ -52,7 +50,6 @@ export class ListDetailComponent implements OnInit {
 				});
 		} else {
 			this.listDoc = null;
-			this.itemsCol = null;
 			this.itemsMeta = null;
 		}
 	}

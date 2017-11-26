@@ -23,7 +23,7 @@ export interface ItemMeta {
 })
 export class ItemDetailComponent implements OnInit {
 
-	private itemDoc: AngularFirestoreDocument<Item>;
+	itemDoc: AngularFirestoreDocument<Item>;
 
 	constructor(private afs: AngularFirestore) { }
 
