@@ -7,47 +7,49 @@ h1 {
     width: 100%;
     margin: 0;
     padding: 0;
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
 }
-.lists .item {
-    padding: 20px;
-}
-.lists > div {
+.lists > li {
+    height: 50px;
+    line-height: 50px;
     overflow: hidden;
     border-radius: 10px;
     color: #bec8d9;
     background-color: #414a59;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0 10px;
 }
-.lists div a {
+.lists a {
     color: #ffcc00;
 }
+
 .lists .selected {
     background-color: #5b7399;
 }
 
-.lists input {
+.lists .add {
+    padding-right: 0;
+}
+.lists .add input {
     border: 0;
     background: none;
+    height: 100%;
+    padding: 0;
 }
-.lists input[type='text'] {
+.lists .add input[type='text'] {
     color: #fff;
-    padding: 20px;
     float: left;
-    width: calc(85% - 40px);
+    width: 80%;
 }
-.lists input[type='submit'] {
+.lists .add input[type='submit'] {
     border-left: 1px solid #ffcc00;
     color: #ffcc00;
     cursor: pointer;
     font-weight: bold;
     float: right;
-    height: 100%;
-    width: 15%;
+    width: 20%;
 }
-.lists input[type='submit']:hover {
+.lists .add input[type='submit']:hover {
     background: #5b7399;
 }
 
