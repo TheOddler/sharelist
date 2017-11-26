@@ -4,7 +4,7 @@ A shared wishlist for groups of friends all sharing their toys or games.
 
 ## Development server
 
-Run `ng serve --output-path docs --base-href sharelist` for a dev server.
+Run `ng serve --aot --output-path docs --base-href sharelist` for a dev server.
 Navigate to `http://localhost:4200/`.
 The app will automatically reload if you change any of the source files.
 
