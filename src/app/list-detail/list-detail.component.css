@@ -3,7 +3,7 @@
 }
 
 .heading ::ng-deep input {
-	width: 100%;
+	width: 100%;  
 }
 .heading ::ng-deep.title input {
 	font-size: 200%;
