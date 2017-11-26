@@ -45,14 +45,6 @@ export class AppComponent implements OnInit {
 		this.listsCol = this.afs.collection<List>('lists', ref => ref.orderBy('title'));
 		this.listsMeta = this.listsCol.snapshotChanges()
 			.map(actions => {
-				// Debug
-				console.log('actions', actions.length, actions.map(a => {
-					const data = a.payload.doc.data() as List;
-					const type = a.type as string;
-					return type + ':' + data.title;
-				}), actions);
-
-				// Map to meta
 				return actions.map(a => {
 					const data = a.payload.doc.data() as List;
 					const id = a.payload.doc.id;
