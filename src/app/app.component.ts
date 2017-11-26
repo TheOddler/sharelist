@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
@@ -32,16 +33,26 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.setupAfsConnection();
+		this.listsMeta.take(1)
+			.subscribe( metas => {
+				this.selectedListMeta =
+					metas.length > 0 ? metas[0] : null;
+			});
+	}
+
+	private setupAfsConnection() {
 		this.listsCol = this.afs.collection<List>('lists', ref => ref.orderBy('title'));
 		this.listsMeta = this.listsCol.snapshotChanges()
 			.map(actions => {
-				if (!this.selectedListMeta) {
-					const first = actions.find(a => a.type === 'added');
-					this.selectedListMeta = {
-						id: first.payload.doc.id,
-						data: first.payload.doc.data() as List
-					};
-				}
+				// Debug
+				console.log('actions', actions.length, actions.map(a => {
+					const data = a.payload.doc.data() as List;
+					const type = a.type as string;
+					return type + ':' + data.title;
+				}), actions);
+
+				// Map to meta
 				return actions.map(a => {
 					const data = a.payload.doc.data() as List;
 					const id = a.payload.doc.id;
@@ -60,14 +71,15 @@ export class AppComponent implements OnInit {
 
 	addList() {
 		if (this.title) {
-			this.afs.collection('lists').add({ 'title': this.title, 'desc': this.desc });
+			this.listsCol.add({ 'title': this.title, 'desc': this.desc });
 			this.title = '';
 			this.desc = '';
 		}
 	}
 
 	deleteList(deleteListMeta) {
-		this.afs.doc('lists/' + deleteListMeta.id).delete();
+		this.listsCol.doc(deleteListMeta.id).delete();
+		this.setupAfsConnection(); // temp fix for double deletes
 		if (this.selectedListMeta &&
 			deleteListMeta.id === this.selectedListMeta.id
 		) {
