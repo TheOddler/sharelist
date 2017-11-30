@@ -13,6 +13,11 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FsInputComponent } from './fs-input/fs-input.component';
 
+// Material
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 const firebaseConfig = {
 	apiKey: 'AIzaSyAylSVJHIw49o8297moNhjaNnvcpK9ub94',
 	authDomain: 'shared-wishlist.firebaseapp.com',
@@ -35,7 +40,10 @@ const firebaseConfig = {
 		AngularFireModule.initializeApp(firebaseConfig),
 		AngularFirestoreModule,
 		AngularFireAuthModule,
-		FormsModule
+		FormsModule,
+		MatButtonModule,
+		MatCheckboxModule,
+		BrowserAnimationsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
