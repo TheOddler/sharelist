@@ -15,7 +15,7 @@ import { FsInputComponent } from './fs-input/fs-input.component';
 
 // Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule} from '@angular/material';
 
 
 const firebaseConfig = {
@@ -43,7 +43,11 @@ const firebaseConfig = {
 		FormsModule,
 		BrowserAnimationsModule,
 		MatButtonModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatCardModule,
+		MatIconModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

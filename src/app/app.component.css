@@ -2,55 +2,24 @@ h1 {
     margin-top: 50px;
 }
 
-.lists {
-    list-style-type: none;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-.lists > li {
-    height: 50px;
-    line-height: 50px;
-    overflow: hidden;
-    border-radius: 10px;
-    color: #bec8d9;
-    background-color: #414a59;
+.lists mat-card {
+    height: 68px;
     display: inline-block;
-    margin: 0 5px;
-    padding: 0 10px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+.lists .item {
+    cursor: pointer;
+}
+.lists .add {
+    padding: 5px 15px;
 }
 .lists a {
     color: #ffcc00;
 }
 
 .lists .selected {
-    background-color: #5b7399;
-}
-
-.lists .add {
-    padding-right: 0;
-}
-.lists .add input {
-    border: 0;
-    background: none;
-    height: 100%;
-    padding: 0;
-}
-.lists .add input[type='text'] {
-    color: #fff;
-    float: left;
-    width: 80%;
-}
-.lists .add input[type='submit'] {
-    border-left: 1px solid #ffcc00;
-    color: #ffcc00;
-    cursor: pointer;
-    font-weight: bold;
-    float: right;
-    width: 20%;
-}
-.lists .add input[type='submit']:hover {
-    background: #5b7399;
+    background-color: #5b749988;
 }
 
 .login-status {

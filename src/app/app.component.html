@@ -3,7 +3,6 @@
 		Welcome to Sharelist!
 	</h1>
 
-	
 	<div class='login-status'>
 		<div *ngIf="afAuth.authState | async; let user; else showLogin">
 			<p>Hello {{ user.displayName }}! <button (click)="logout()">Logout</button></p>
@@ -16,21 +15,25 @@
 		</ng-template>
 	</div>
 
-	<ul class="lists">
-		<li
+	<div class="lists">
+		<mat-card
 			class="item"
 			[ngClass]="{'selected': selectedListMeta?.id === list.id}"
 			*ngFor="let list of listsMeta | async"
 			(click)="selectedListMeta = list"
 		>
 			<strong>{{ list.data.title}}</strong>
-			(<a href="javascript:void(0)" (click)="deleteList(list); $event.stopPropagation();">del</a>)
-		</li><!--
-	 --><li class='add' *ngIf="listsMeta | async">
-			<input type="text" [(ngModel)]="title" name="title" placeholder="Add a list...">
-			<input type="submit" value="+" (click)="addList()">
-		</li>
-	</ul>
+			(<a href="javascript:void(0)" (click)="deleteList(list); $event.stopPropagation();">del</a>)		
+		</mat-card><!--
+	 --><mat-card class='add' *ngIf="listsMeta | async">
+			<mat-form-field>
+				<input matInput type="text" [(ngModel)]="title" name="title" placeholder="Add a list...">
+			</mat-form-field>
+			<button mat-mini-fab (click)="addList()">+</button>
+		</mat-card>
+	</div>
+
+	
 
 	<app-list-detail [listMeta]="selectedListMeta"></app-list-detail>
 </div>
