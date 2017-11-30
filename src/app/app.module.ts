@@ -14,8 +14,8 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FsInputComponent } from './fs-input/fs-input.component';
 
 // Material
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 
 const firebaseConfig = {
@@ -41,9 +41,9 @@ const firebaseConfig = {
 		AngularFirestoreModule,
 		AngularFireAuthModule,
 		FormsModule,
+		BrowserAnimationsModule,
 		MatButtonModule,
-		MatCheckboxModule,
-		BrowserAnimationsModule
+		MatCheckboxModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
