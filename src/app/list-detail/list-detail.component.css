@@ -1,13 +1,11 @@
-.container {
-	padding-top: 20px;
-}
-
 .heading ::ng-deep mat-form-field {
-	width: 100%;  
+	width: 100%;
+	height: 1em;
 }
 .heading ::ng-deep.title mat-form-field {
 	font-size: 200%;
 }
 
 .description {
+	height: 1em;
 }
