@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -9,11 +9,15 @@ import 'rxjs/add/operator/distinctUntilChanged';
 @Component({
 	selector: 'app-fs-input',
 	templateUrl: './fs-input.component.html',
-	styleUrls: ['./fs-input.component.css', '../shared_css/input.css']
+	styleUrls: ['./fs-input.component.css', '../shared_css/input.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class FsInputComponent implements OnInit {
 
 	@Input() placeholder: string;
+	@Input() floatPlaceholder = 'auto';
+	@Input() required = false;
+	@Input() alwaysUnderline = true;
 	private _document: AngularFirestoreDocument<any>;
 	private _field: string;
 	private _docObservable: Observable<any>;

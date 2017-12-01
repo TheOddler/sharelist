@@ -2,10 +2,10 @@
 	padding-top: 20px;
 }
 
-.heading ::ng-deep input {
+.heading ::ng-deep mat-form-field {
 	width: 100%;  
 }
-.heading ::ng-deep.title input {
+.heading ::ng-deep.title mat-form-field {
 	font-size: 200%;
 }
 

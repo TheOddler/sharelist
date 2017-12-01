@@ -1,0 +1,3 @@
+.fs-input-no-underline .mat-form-field-underline {
+	background-color: unset;
+}

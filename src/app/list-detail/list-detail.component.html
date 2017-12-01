@@ -3,32 +3,44 @@
 		<div>
 			<app-fs-input
 				class="title"
-				placeholder="Title"
 				[document]='listDoc'
 				field="title"
+				[alwaysUnderline]="false"
+				placeholder='Title...'
+				floatPlaceholder='never'
 			></app-fs-input>
 		</div>
 
 		<div>
 			<app-fs-input
 				class="description"
-				placeholder="Description"
 				[document]='listDoc'
 				field="desc"
+				[alwaysUnderline]="false"
+				placeholder='Description...'
+				floatPlaceholder='never'
 			></app-fs-input>
 		</div>
 	</div>
 
 	<div>
 		<ul class="items">
-			<app-item-detail
-				class='item'
-				*ngFor="let itemM of itemsMeta | async; trackBy: trackByFn;"
-				[itemMeta]="itemM"
-			></app-item-detail>
+			<li *ngFor="let itemM of itemsMeta | async; trackBy: trackByFn;">
+				<app-item-detail
+					class='item'
+					[itemMeta]="itemM"
+				></app-item-detail>
+			</li>
 			<li class='add' *ngIf="itemsMeta | async">
-				<input type="submit" value="+" (click)="addItem()">
-				<input type="text" [(ngModel)]="newItemName" name="name" placeholder="Add an item...">
+				<button mat-mini-fab (click)="addItem()">+</button>
+				<mat-form-field>
+					<input matInput
+						type="text"
+						[(ngModel)]="newItemName"
+						name="name"
+						placeholder="Add an item..."
+					>
+				</mat-form-field>
 			</li>
 		</ul>
 	</div>

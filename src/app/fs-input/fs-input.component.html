@@ -1,6 +1,13 @@
-<input
-	placeholder="{{ placeholder }}"
-	[ngModel]='(observable | async)'
-	(ngModelChange)="update($event)"
-	type="text"
+<mat-form-field
+	[ngClass]="{'fs-input-no-underline': !alwaysUnderline}"
+	[floatPlaceholder]="floatPlaceholder"
+	[hideRequiredMarker]='true'
 >
+	<input matInput
+		[placeholder]="placeholder"
+		[ngModel]='(observable | async)'
+		(ngModelChange)="update($event)"
+		type="text"
+		[required]="required"
+	>
+</mat-form-field>

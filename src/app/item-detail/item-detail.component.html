@@ -1,8 +1,8 @@
-<li *ngIf="itemDoc">
-	<app-fs-input
-		class="name"
-		placeholder="Title"
-		[document]='itemDoc'
-		field="name"
-	></app-fs-input>
-</li>
+<app-fs-input
+	*ngIf="itemDoc"
+	class="name"
+	[document]='itemDoc'
+	field="name"
+	[required]="true"
+	[alwaysUnderline]="false"
+></app-fs-input>

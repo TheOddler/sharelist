@@ -1,4 +1,4 @@
-input {
+/*input {
 	background: none;
 	border: 0;
 	border-bottom: 1px solid transparent;
@@ -10,4 +10,4 @@ input:focus[type='text'] {
 
 input:focus[type='text'], input[type='submit']:hover {
 	background-color: rgba(0,0,0,0.1);
-}
+}*/
