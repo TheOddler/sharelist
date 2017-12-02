@@ -15,25 +15,26 @@
 		</ng-template>
 	</div>
 
+
 	<div class="lists">
-		<mat-card
+		<button mat-raised-button
 			class="item"
 			[ngClass]="{'selected': selectedListMeta?.id === list.id}"
 			*ngFor="let list of listsMeta | async"
 			(click)="selectedListMeta = list"
 		>
 			<strong>{{ list.data.title}}</strong>
-			(<a href="javascript:void(0)" (click)="deleteList(list); $event.stopPropagation();">del</a>)		
-		</mat-card><!--
-	 --><mat-card class='add' *ngIf="listsMeta | async">
+			(<a href="javascript:void(0)" (click)="deleteList(list); $event.stopPropagation();">del</a>)
+		</button>
+		<div class='add' *ngIf="listsMeta | async">
 			<mat-form-field>
 				<input matInput type="text" [(ngModel)]="title" name="title" placeholder="Add a list...">
 			</mat-form-field>
 			<button mat-mini-fab (click)="addList()">+</button>
-		</mat-card>
+		</div>
 	</div>
-
 	
+
 
 	<app-list-detail [listMeta]="selectedListMeta"></app-list-detail>
 </div>

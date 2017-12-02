@@ -1,8 +1,6 @@
-.lists mat-card {
-    height: 68px;
+.lists > * {
     display: inline-block;
     margin: 5px;
-    box-sizing: border-box;
 }
 .lists .item {
     cursor: pointer;

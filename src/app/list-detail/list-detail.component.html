@@ -32,7 +32,6 @@
 				></app-item-detail>
 			</li>
 			<li class='add' *ngIf="itemsMeta | async">
-				<button mat-mini-fab (click)="addItem()">+</button>
 				<mat-form-field>
 					<input matInput
 						type="text"
@@ -41,6 +40,7 @@
 						placeholder="Add an item..."
 					>
 				</mat-form-field>
+				<button mat-mini-fab (click)="addItem()">+</button>
 			</li>
 		</ul>
 	</div>
