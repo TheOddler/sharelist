@@ -63,7 +63,7 @@ export class FsInputComponent implements OnInit {
 	}
 
 	update(newValue: string) {
-		if (this._changed) {
+		if (this._changed && newValue) {
 			this._changed.next(newValue);
 		}
 	}
