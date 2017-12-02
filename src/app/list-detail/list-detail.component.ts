@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -26,6 +26,7 @@ export interface ListMeta {
 })
 export class ListDetailComponent implements OnInit {
 
+	_listMeta: ListMeta;
 	listDoc: AngularFirestoreDocument<List>;
 
 	itemsCol: AngularFirestoreCollection<Item>;
@@ -33,11 +34,14 @@ export class ListDetailComponent implements OnInit {
 
 	newItemName: string;
 
+	@Output() deleteClicked: EventEmitter<ListMeta> = new EventEmitter();
+
 	constructor(private afs: AngularFirestore) { }
 
 	ngOnInit() { }
 
 	@Input() set listMeta(newListMeta: ListMeta) {
+		this._listMeta = newListMeta;
 		if (newListMeta != null) {
 			this.listDoc = this.afs.doc('lists/' + newListMeta.id);
 

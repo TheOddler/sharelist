@@ -17,16 +17,14 @@
 
 
 	<div class="lists">
-		<button mat-raised-button
-			class="item"
-			[ngClass]="{'selected': selectedListMeta?.id === list.id}"
-			*ngFor="let list of listsMeta | async"
+		<button mat-raised-button *ngFor="let list of listsMeta | async"
+		class='item'
 			(click)="selectedListMeta = list"
+			[ngClass]="{'selected': selectedListMeta?.id === list.id}"
 		>
 			<strong>{{ list.data.title}}</strong>
-			(<a href="javascript:void(0)" (click)="deleteList(list); $event.stopPropagation();">del</a>)
 		</button>
-		<div class='add' *ngIf="listsMeta | async">
+		<div *ngIf="listsMeta | async" class='add'>
 			<mat-form-field>
 				<input matInput type="text" [(ngModel)]="title" name="title" placeholder="Add a list...">
 			</mat-form-field>
@@ -35,6 +33,8 @@
 	</div>
 	
 
-
-	<app-list-detail [listMeta]="selectedListMeta"></app-list-detail>
+	<app-list-detail
+		[listMeta]="selectedListMeta"
+		(deleteClicked)="deleteList($event)"
+	></app-list-detail>
 </div>

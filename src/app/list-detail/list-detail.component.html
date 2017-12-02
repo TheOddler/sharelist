@@ -1,27 +1,38 @@
 <div class="container" *ngIf="listDoc">
 	<div class='heading'>
-		<div>
-			<app-fs-input
-				class="title"
-				[document]='listDoc'
-				field="title"
-				[alwaysUnderline]="false"
-				placeholder='Title...'
-				floatPlaceholder='never'
-			></app-fs-input>
-		</div>
+		<app-fs-input
+			class="title"
+			[document]='listDoc'
+			field="title"
+			[alwaysUnderline]="false"
+			placeholder='Title...'
+			floatPlaceholder='never'
+		></app-fs-input>
 
-		<div>
-			<app-fs-input
-				class="description"
-				[document]='listDoc'
-				field="desc"
-				[alwaysUnderline]="false"
-				placeholder='Description...'
-				floatPlaceholder='never'
-			></app-fs-input>
-		</div>
+		<app-fs-input
+			class="description"
+			[document]='listDoc'
+			field="desc"
+			[alwaysUnderline]="false"
+			placeholder='Description...'
+			floatPlaceholder='never'
+		></app-fs-input>
+		
+		<button mat-icon-button
+			class='menu'
+			[matMenuTriggerFor]="menu"
+		>
+			<mat-icon>more_vert</mat-icon>
+		</button>
 	</div>
+
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item
+			(click)="deleteClicked.emit(_listMeta)"
+		>
+			Delete this list
+		</button>
+	</mat-menu>
 
 	<div>
 		<ul class="items">

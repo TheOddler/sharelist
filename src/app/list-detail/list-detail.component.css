@@ -1,11 +1,12 @@
 .heading ::ng-deep mat-form-field {
-	width: 100%;
+	width: calc(100% - 60px);
 	height: 1em;
 }
-.heading ::ng-deep.title mat-form-field {
+
+.heading .title ::ng-deep .mat-input-element {
 	font-size: 200%;
 }
 
-.description {
-	height: 1em;
+.heading .menu {
+	float: right;
 }
