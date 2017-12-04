@@ -69,13 +69,8 @@ export class AppComponent implements OnInit {
 		}
 	}
 
-	deleteList(deleteListMeta) {
-		this.listsCol.doc(deleteListMeta.id).delete();
+	onSelectedListDeleted() {
 		this.setupAfsConnection(); // temp fix for double deletes
-		if (this.selectedListMeta &&
-			deleteListMeta.id === this.selectedListMeta.id
-		) {
-			this.selectedListMeta = null;
-		}
+		this.selectedListMeta = null;
 	}
 }

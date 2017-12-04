@@ -35,6 +35,6 @@
 
 	<app-list-detail
 		[listMeta]="selectedListMeta"
-		(deleteClicked)="deleteList($event)"
+		(onDeleted)="onSelectedListDeleted()"
 	></app-list-detail>
 </div>

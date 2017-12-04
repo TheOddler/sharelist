@@ -26,7 +26,6 @@ export interface ListMeta {
 })
 export class ListDetailComponent implements OnInit {
 
-	_listMeta: ListMeta;
 	listDoc: AngularFirestoreDocument<List>;
 
 	itemsCol: AngularFirestoreCollection<Item>;
@@ -34,14 +33,13 @@ export class ListDetailComponent implements OnInit {
 
 	newItemName: string;
 
-	@Output() deleteClicked: EventEmitter<ListMeta> = new EventEmitter();
+	@Output() onDeleted = new EventEmitter();
 
 	constructor(private afs: AngularFirestore) { }
 
 	ngOnInit() { }
 
 	@Input() set listMeta(newListMeta: ListMeta) {
-		this._listMeta = newListMeta;
 		if (newListMeta != null) {
 			this.listDoc = this.afs.doc('lists/' + newListMeta.id);
 
@@ -59,6 +57,11 @@ export class ListDetailComponent implements OnInit {
 			this.listDoc = null;
 			this.itemsMeta = null;
 		}
+	}
+
+	delete() {
+		this.onDeleted.emit();
+		this.listDoc.delete();
 	}
 
 	addItem() {
