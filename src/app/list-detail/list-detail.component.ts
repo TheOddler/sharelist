@@ -22,7 +22,7 @@ export interface ListMeta {
 @Component({
 	selector: 'app-list-detail',
 	templateUrl: './list-detail.component.html',
-	styleUrls: ['./list-detail.component.css', '../shared_css/input.css']
+	styleUrls: ['./list-detail.component.css']
 })
 export class ListDetailComponent implements OnInit {
 

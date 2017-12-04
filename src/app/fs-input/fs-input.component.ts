@@ -9,7 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 @Component({
 	selector: 'app-fs-input',
 	templateUrl: './fs-input.component.html',
-	styleUrls: ['./fs-input.component.css', '../shared_css/input.css'],
+	styleUrls: ['./fs-input.component.css'],
 	encapsulation: ViewEncapsulation.None
 })
 export class FsInputComponent implements OnInit {
