@@ -60,8 +60,22 @@ export class ListDetailComponent implements OnInit {
 	}
 
 	delete() {
-		this.onDeleted.emit();
+		this.itemsCol.ref.get()
+			.then((snapshot) => {
+				// Delete documents in a batch
+				const batch = this.afs.firestore.batch();
+				snapshot.docs.forEach(doc => {
+					batch.delete(doc.ref);
+				});
+				batch.commit();
+			});
 		this.listDoc.delete();
+
+		this.listDoc = null;
+		this.itemsCol = null;
+		this.itemsMeta = null;
+
+		this.onDeleted.emit();
 	}
 
 	addItem() {
